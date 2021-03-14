@@ -75,7 +75,7 @@
 
 #### Attempt #2 ####
   
-#### Looking at the Proportion of Bechdel Scores by Year ####
+#### Looking at the Proportion of Bechdel Scores by Movie Rating for 1970 to 2013 ####
   
 #### Packages ####
   
@@ -136,20 +136,26 @@
   colorpalette <- c("#0032AB", "#6028A7", "#8C159F", "#AF0093", "#CB0084", "#E10072", "#F10060")
     ## Generated on https://twitter.com/palitra_color/status/1178163019542609921
   
-  ## Image background 
+  ## Image background - didn't work
   image <- jpeg::readJPEG("WOMEN,THE1939_00309850_1399x1104_091020081242.jpg")
   
   figure <- ggplot(data, aes(x = Bechdel_Rating, y = Rated, fill = Rated)) +
   geom_density_ridges(show.legend = FALSE, bandwidth = 0.20, jittered_points = TRUE,
-                      position = position_points_jitter(width = 0.5, height = 0),
-                      point_shape = '|', point_size = 3, point_alpha = 0.7, alpha = 0.7) +
+  position = position_points_jitter(width = 0.5, height = 0),
+  point_shape = '|', point_size = 3, point_alpha = 0.7, alpha = 0.7) +
   theme_ridges(center_axis_labels = TRUE) +
   scale_y_discrete(limits = c("Not Rated", "G", "PG", "PG-13", "R", "NC-17", "X")) +
   theme_minimal(base_size = 14) +
   scale_fill_manual(values = colorpalette) +
   xlim(-0.5, 3.7) +
   xlab("Bechdel Score") + ylab("Motion Picture Association Film Rating") +
-    theme(plot.background = element_rect(fill = "#e6cce1"), panel.background = element_rect(fill = "#e6cce1"))
+  theme(plot.background = element_rect(fill = "#e6cce1"), panel.background = element_rect(fill = "#e6cce1")) +
+  labs(title = "Bechdel Scores by Movie Rating 1970-2013",
+  caption = "Data source: FiveThirtyEight") +
+  theme(plot.title = element_text(hjust = 0.5),
+  plot.subtitle = element_text(hjust = 0.5)) +
+  theme(plot.title = element_text(face="bold"), axis.title.x = element_text(face="bold"), 
+  axis.title.y = element_text(face="bold"))
   
   figure
   
